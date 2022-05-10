@@ -17,11 +17,15 @@ class ClientResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')->required(),
+                Forms\Components\TextInput::make('harvest_id')->required(),
+                Forms\Components\Checkbox::make('active'),
             ]);
     }
 
@@ -29,7 +33,8 @@ class ClientResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                ->label('Clients'),
             ])
             ->filters([
                 //
